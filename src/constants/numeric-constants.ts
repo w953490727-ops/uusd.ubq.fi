@@ -7,6 +7,9 @@ export const MIN_SLIPPAGE_BPS = 10n; // 0.1% minimum
 export const MAX_SLIPPAGE_BPS = 1000n; // 10% maximum
 export const DEFAULT_SLIPPAGE_PERCENT = 0.005; // 0.5% as decimal
 
+// Minimum USD value for balances shown in the inventory bar.
+export const MINIMUM_VISIBLE_TOKEN_USD_VALUE = 1;
+
 // // Price precision for protocol calculations (6 decimals)
 // export const PRICE_PRECISION = 1000000n;
 
