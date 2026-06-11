@@ -1,5 +1,6 @@
 import { formatUnits, parseUnits, type Address as _Address } from "viem";
 import type { TokenBalance, TokenMetadata } from "../types/inventory.types.ts";
+import { MINIMUM_VISIBLE_TOKEN_USD_VALUE } from "../constants/numeric-constants.ts";
 
 /**
  * Format token amount for display with appropriate decimal places
@@ -54,6 +55,13 @@ export function calculateTotalUsdValue(balances: TokenBalance[]): number {
  */
 export function isBalanceZero(balance: bigint, decimals: number): boolean {
   return balance < parseUnits("0.0001", decimals);
+}
+
+/**
+ * Check if a wallet token balance should be shown in the inventory bar.
+ */
+export function isVisibleInventoryBalance(balance: TokenBalance): boolean {
+  return !isBalanceZero(balance.balance, balance.decimals) && (balance.usdValue ?? 0) >= MINIMUM_VISIBLE_TOKEN_USD_VALUE;
 }
 
 /**
